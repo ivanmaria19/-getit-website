@@ -1,0 +1,1 @@
+Original reference photos copied from website/ without modification. Commercial publication rights remain unconfirmed (D05). Stage 06 uses next/image for responsive AVIF/WebP delivery without altering these copies. Do not treat copies or the derived social photo as licence evidence.
