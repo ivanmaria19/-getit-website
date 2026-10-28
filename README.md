@@ -1,7 +1,5 @@
 # GetIt public website
 
-Stages 02-04 are complete. Stage 05 provides provisional enquiry forms and a tested server-side Resend adapter; final fields/privacy and live configuration remain pending. Stage 06 local QA/SEO/image work is finished, awaiting client Round 1 feedback. The original visual reference remains in ../website/. Real sending is disabled; no email delivery is verified. The application provides no bookings.
-
 ## Run locally
 
 Use Node 22 (the inspected environment has 22.23.3) and npm. From the project root:
