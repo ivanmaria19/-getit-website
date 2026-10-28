@@ -7,7 +7,6 @@ Stages 02-04 are complete. Stage 05 provides provisional enquiry forms and a tes
 Use Node 22 (the inspected environment has 22.23.3) and npm. From the project root:
 
 ```powershell
-cd web
 npm ci
 npm run dev
 ```
