@@ -61,7 +61,7 @@ export function EnquiryForm({ audience, sendingEnabled, privacyUrl, popup = fals
 
   return (
     <>
-      {!sendingEnabled && <p className="form-availability" role="status">Versturen is tijdelijk niet beschikbaar. Neem voor vragen contact op via <a href="mailto:ivanspeakz@gmail.com">ivanspeakz@gmail.com</a>.</p>}
+      
       <noscript><p>Schakel JavaScript in om dit formulier te gebruiken.</p></noscript>
       <form className={popup ? 'interest-form' : undefined} method="post" action="/api/enquiries" noValidate onSubmit={submit} aria-describedby="enquiry-notice" aria-busy={pending} onChange={event => {
         requestKey.current = undefined;
