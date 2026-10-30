@@ -1,7 +1,7 @@
 import 'server-only';
 import { validEmail } from '../enquiries/validation';
 
-export type DeliveryConfig = { enabled: boolean; formsApproved: boolean; privacyUrl: string; apiKey: string; from: string; to: string; origin: string };
+export type DeliveryConfig = { enabled: boolean; formsApproved: boolean; privacyUrl: string; apiKey: string; from: string; to: string; origin: string; disabledReasons?: string[] };
 
 export function getEnquiryConfig(): DeliveryConfig {
   let privacyUrl = '';
@@ -25,5 +25,16 @@ export function getEnquiryConfig(): DeliveryConfig {
   const enabled = formsApproved && !!privacyUrl && !!origin && !!apiKey && validEmail(from) && validEmail(to)
     && process.env.ENQUIRY_SENDING_ENABLED === 'true'
     && process.env.ENQUIRY_RECIPIENT_CONFIRMED === 'true';
-  return { enabled, formsApproved, privacyUrl, apiKey, from, to, origin };
+  // Only fixed diagnostic codes, never environment values or credentials.
+  const disabledReasons = [
+    !formsApproved && 'ENQUIRY_FIELDS_APPROVED_not_true',
+    !privacyUrl && 'ENQUIRY_PRIVACY_URL_missing_invalid_or_pending_policy',
+    !origin && 'ENQUIRY_SITE_ORIGIN_missing_or_invalid',
+    !apiKey && 'RESEND_API_KEY_missing',
+    !validEmail(from) && 'ENQUIRY_FROM_EMAIL_missing_or_invalid',
+    !validEmail(to) && 'ENQUIRY_TO_EMAIL_missing_or_invalid',
+    process.env.ENQUIRY_SENDING_ENABLED !== 'true' && 'ENQUIRY_SENDING_ENABLED_not_true',
+    process.env.ENQUIRY_RECIPIENT_CONFIRMED !== 'true' && 'ENQUIRY_RECIPIENT_CONFIRMED_not_true',
+  ].filter((reason): reason is string => typeof reason === 'string');
+  return { enabled, formsApproved, privacyUrl, apiKey, from, to, origin, disabledReasons };
 }

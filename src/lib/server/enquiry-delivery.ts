@@ -22,8 +22,19 @@ export async function deliverEnquiry(data: Enquiry, config: DeliveryConfig, idem
       cache: 'no-store',
     });
     // Do not forward provider responses, credentials or visitor details to the browser/logs.
-    if (!response.ok) throw new DeliveryFailed();
+    if (!response.ok) {
+      console.error('[enquiries] resend_rejected', { status: response.status });
+      throw new DeliveryFailed();
+    }
     const result: unknown = await response.json();
     if (!result || typeof result !== 'object' || !('id' in result) || typeof result.id !== 'string' || !result.id) throw new DeliveryFailed();
-  } catch { throw new DeliveryFailed(); }
+  } catch (error) {
+    if (!(error instanceof DeliveryFailed)) {
+      console.error('[enquiries] resend_request_failed', {
+        reason: error instanceof Error && ['TimeoutError', 'AbortError'].includes(error.name)
+          ? 'timeout_or_aborted' : 'network_or_invalid_response',
+      });
+    }
+    throw new DeliveryFailed();
+  }
 }

@@ -63,10 +63,16 @@ export function createEnquiryHandler(deps: {
     if (!result.ok) return reply(422, { message: 'Controleer de aangegeven velden.', errors: result.errors });
     const key = request.headers.get('idempotency-key') ?? '';
     if (!/^[a-f\d]{8}-[a-f\d]{4}-4[a-f\d]{3}-[89ab][a-f\d]{3}-[a-f\d]{12}$/i.test(key)) return reply(400, { message: 'Vernieuw de pagina en probeer opnieuw.' });
-    if (!config.enabled) return reply(503, { message: unavailable });
+    if (!config.enabled) {
+      console.error('[enquiries] sending_disabled', { status: 503, reasons: config.disabledReasons ?? ['configuration_disabled'] });
+      return reply(503, { message: unavailable });
+    }
     try {
       await deps.deliver(result.data, config, key);
       return reply(200, { ok: true, message: 'Bedankt! Je interesse is verstuurd naar GetIt.' });
-    } catch { return reply(502, { message: 'Versturen is niet gelukt. Je gegevens blijven staan. Probeer opnieuw; controleer je verbinding als het probleem blijft bestaan.' }); }
+    } catch {
+      console.error('[enquiries] delivery_failed', { status: 502 });
+      return reply(502, { message: 'Versturen is niet gelukt. Je gegevens blijven staan. Probeer opnieuw; controleer je verbinding als het probleem blijft bestaan.' });
+    }
   };
 }
