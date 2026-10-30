@@ -28,6 +28,7 @@ export async function deliverEnquiry(data: Enquiry, config: DeliveryConfig, idem
     }
     const result: unknown = await response.json();
     if (!result || typeof result !== 'object' || !('id' in result) || typeof result.id !== 'string' || !result.id) throw new DeliveryFailed();
+    console.info('[enquiries] resend_accepted', { emailId: result.id });
   } catch (error) {
     if (!(error instanceof DeliveryFailed)) {
       console.error('[enquiries] resend_request_failed', {
