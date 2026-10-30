@@ -14,7 +14,9 @@ export default function PrivacyPage() {
   }
   return <main className="wrap information-page"><Brand /><div className="eyebrow">GetIt</div><h1>Privacy</h1>
     {externalPolicy ? <><p>Lees hoe GetIt met je persoonsgegevens omgaat.</p><a className="textlink" href={privacyUrl}>Lees de privacyverklaring <span aria-hidden="true">↗</span></a></>
-      : <><p>De definitieve privacyverklaring wordt hier binnenkort gepubliceerd.</p><p>Het interesseformulier is nog niet beschikbaar. Heb je een privacyvraag? Neem contact op via <a href="mailto:ivanspeakz@gmail.com">ivanspeakz@gmail.com</a>.</p></>}
+      : <><p>De definitieve privacyverklaring wordt hier binnenkort gepubliceerd.</p><p>Het interesseformulier is nog niet beschikbaar. Heb je een privacyvraag? 
+        {/* Neem contact op via <a href="mailto:ivanspeakz@gmail.com">ivanspeakz@gmail.com</a>. */}
+        </p></>}
     <nav className="information-links" aria-label="Meer informatie"><a href="/">Terug naar GetIt</a><a href="/contact">Contact</a></nav>
   </main>;
 }
