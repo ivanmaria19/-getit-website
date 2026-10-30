@@ -5,16 +5,16 @@ const bodyFont = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans', displ
 const displayFont = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' });
 export const metadata: Metadata = {
   metadataBase: new URL('https://wearegetit.com'),
-  title: { default: 'GetIt | Mooie plekken. Echte makers. Goede klik.', template: '%s | GetIt' },
+  title: { default: 'GetIt | Good things will happen.', template: '%s | GetIt' },
   description: 'GetIt verbindt geselecteerde creators en modellen met bijzondere restaurants, cafés en bars. Voor ervaringen die je wilt delen. En plekken die gezien mogen worden. Binnenkort in Amsterdam.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website', locale: 'nl_NL', siteName: 'GetIt', url: '/',
-    title: 'GetIt | Mooie plekken. Echte makers. Goede klik.',
+    title: 'GetIt | Good things will happen.',
     description: 'Bijzondere horeca ontmoet geselecteerde makers. Een mooie ervaring, in ruil voor content. Binnenkort in Amsterdam.',
     images: [{ url: '/social/getit.jpg', width: 1200, height: 630, alt: 'Een sfeervolle tafel als sfeerbeeld voor GetIt' }],
   },
-  twitter: { card: 'summary_large_image', title: 'GetIt | Good things. Worth sharing.', description: 'Bijzondere horeca ontmoet geselecteerde makers. Binnenkort in Amsterdam.', images: ['/social/getit.jpg'] },
+  twitter: { card: 'summary_large_image', title: 'GetIt | Good things will happen.', description: 'Bijzondere horeca ontmoet geselecteerde makers. Binnenkort in Amsterdam.', images: ['/social/getit.jpg'] },
   // Keep review builds unindexed. Change only during approved production launch.
   robots: { index: false, follow: false },
   // Keep translation tools from rewriting the DOM before React hydrates it.
