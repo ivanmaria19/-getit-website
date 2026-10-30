@@ -8,10 +8,7 @@ export function getEnquiryConfig(): DeliveryConfig {
   let origin = '';
   try {
     const url = new URL(process.env.ENQUIRY_PRIVACY_URL ?? '');
-    const pendingLocalPolicy = ['wearegetit.com', 'www.wearegetit.com', 'wearegetit.nl', 'www.wearegetit.nl'].includes(url.hostname)
-      && url.pathname.replace(/\/$/, '') === '/privacy';
-    // /privacy is currently an honest pending-policy page, not an approved policy.
-    if (url.protocol === 'https:' && !url.username && !url.password && !pendingLocalPolicy) privacyUrl = url.href;
+    if (url.protocol === 'https:' && !url.username && !url.password) privacyUrl = url.href;
   } catch { /* Unconfirmed legal links stay absent. */ }
   try {
     const url = new URL(process.env.ENQUIRY_SITE_ORIGIN ?? '');
@@ -28,7 +25,7 @@ export function getEnquiryConfig(): DeliveryConfig {
   // Only fixed diagnostic codes, never environment values or credentials.
   const disabledReasons = [
     !formsApproved && 'ENQUIRY_FIELDS_APPROVED_not_true',
-    !privacyUrl && 'ENQUIRY_PRIVACY_URL_missing_invalid_or_pending_policy',
+    !privacyUrl && 'ENQUIRY_PRIVACY_URL_missing_or_invalid',
     !origin && 'ENQUIRY_SITE_ORIGIN_missing_or_invalid',
     !apiKey && 'RESEND_API_KEY_missing',
     !validEmail(from) && 'ENQUIRY_FROM_EMAIL_missing_or_invalid',
