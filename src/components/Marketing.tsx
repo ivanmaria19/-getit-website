@@ -4,7 +4,32 @@ import { getEnquiryConfig } from '@/lib/server/enquiry-config';
 
 export function Header() { return (<header className="topbar"><nav className="wrap" aria-label="Hoofdnavigatie"><Brand /><div className="navlinks"><a href="#creators">Voor creators</a><a href="#venues">Voor venues</a><a href="#hoe">Zo werkt het</a><a className="btn small" href="#meedoen">Laat je interesse weten <span className="arrow">↗</span></a></div></nav></header>); }
 
-export function Hero() { return (<section className="hero"><div className="wrap"><div className="hero-grid"><div className="hero-copy"><div className="eyebrow"><span className="dot"></span> Good things. Worth sharing.</div><h1>Mooie plekken.<br />Echte makers.<br /><em>Goede klik.</em></h1><p>GetIt verbindt bijzondere restaurants, cafés en bars met geselecteerde creators. Voor ervaringen die je wilt delen. En plekken die gezien mogen worden.</p><div className="buttons"><a className="btn" href="#venues">Voor horeca <span className="arrow">↗</span></a><a className="btn light" href="#creators">Voor creators <span className="arrow">↗</span></a></div></div><div className="herovisual hero-editorial"><div className="hero-photo-frame"><Image className="heroimg" src="/images/dining.jpg" alt="Een sfeervolle tafel in een restaurant" width={1400} height={933} sizes="(max-width: 650px) 100vw, 50vw" preload /><Image className="smallimg" src="/images/creator.jpg" alt="Portret als sfeerbeeld van een creator" width={900} height={1350} sizes="126px"  /></div><div className="experience-note"><small>Van ervaring naar verhaal</small><strong>Een plek die je wilt delen.</strong></div></div></div></div></section>); }
+export function Hero() { return (
+  <section className="hero hero-reference"><div className="wrap"><div className="hero-grid">
+    <div className="hero-copy">
+      <div className="eyebrow"><span className="dot"></span> Good things. Worth sharing.</div>
+      <h1>Mooie plekken.<br />Nieuwe verhalen.</h1>
+      <p>Creators ontdekken bijzondere plekken en maken content. Venues ontvangen een verhaal dat hun plek laat zien.</p>
+      <div className="buttons"><a className="btn" href="#venues">Voor horeca <span className="arrow">&#8599;</span></a><a className="btn light" href="#creators">Voor creators <span className="arrow">&#8599;</span></a></div>
+    </div>
+    <figure className="hero-app-preview">
+      <div className="hero-app-scene">
+        <Image className="hero-cafe" src="/images/cafe.jpg" alt="Een sfeervol Amsterdams caf&#233;" width={1100} height={754} sizes="(max-width: 650px) 100vw, 50vw" preload />
+        <div className="hero-phone" aria-label="Illustratief voorbeeld van de GetIt-app">
+          <div className="hero-phone-island" />
+          <div className="hero-phone-brand"><strong>GetIt</strong><span aria-hidden="true">&#8801;</span></div>
+          <h2>Ontdek<br />Amsterdam</h2>
+          <Image src="/images/cafe.jpg" alt="" width={1100} height={754} sizes="280px" />
+          <strong className="hero-phone-title">Matcha &amp; lunch voor twee</strong>
+          <small>In ruil voor afgesproken content</small>
+          <span className="hero-phone-action">Bekijk de ervaring &#8594;</span>
+        </div>
+        <div className="hero-venue-card"><span>Voor de venue</span><strong>1 Reel + 2 stories</strong><p>Vooraf afgesproken.<br />Begeleid door GetIt.</p></div>
+      </div>
+      <figcaption>Een kijkje in de GetIt-app &middot; concept</figcaption>
+    </figure>
+  </div></div></section>
+); }
 
 export function BrandStrip() { return (<section className="strip"><div className="wrap"><p>Goede makers. Passende plekken.</p></div></section>); }
 
